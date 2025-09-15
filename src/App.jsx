@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css'
 import Modal from './Modal';
+import Title from './Title';
+import Blog from './Blog';
 
 function App() {
 
@@ -44,55 +46,30 @@ function App() {
 
   // 직전 선택한 인덱스를 저장할 스테이트
   const [currentIndex, setCurrentIndex] = useState(null);
-
-
-  // 제목 클릭 시 모달 보이기
-  function handleTitle(index){
-    // 조건 : 같은 제목을 클릭하면 나타나고 사라짐
-    // 다른 제목을 클릭하면 그냥 보여야 하고..
-    if(! modal) {
-      //1. 현재 모달이 닫혀있으면 연다.
-      setModal(true);
-      setCurrentIndex(index);
-    } else if(currentIndex === index){
-      // 2. 같은 타이틀이 선택된 경우
-      setModal(false);
-    } else {
-      setCurrentIndex(index);
-    }
-  }
+  
 
   return (
     <div className='App'>
-      <div className='black-bg'>
-        React + Vite로 만드는 블로그
-      </div>
+      {/* Title이 위치할 곳 */}
+      <Title />
+
       {/* <h4 style={{color: 'red', fontSize: '20px'}}>{post}</h4> */}
 
-      {/* 타이틀 정렬하기 */}
-      <button onClick={()=>{
-        const sortedTitle = [...title].sort()
-        setTitle(sortedTitle);
-      }}>글 정렬하기</button>
-
-      <div className='list'>
-        {title.map((item, index)=>{
-          return(
-            <div key={index}>
-              <h4 onClick={()=> handleTitle(index)}>
-                    {title[index]}
-                <span onClick={()=>{
-                  const newLikes = [... like]
-                  newLikes[index]++
-                  setLike(newLikes)
-                  }}>👍
-                </span>{like[index]} 
-              </h4>      
-              <p>작성일 : {createDate[index]}</p>
-            </div>  
-          )
-        })}           
-      </div>
+      {/* Blog 위치할 곳 */}
+      <Blog 
+        title={title}
+        createDate={createDate}
+        details={details}
+        setTitle={setTitle}
+        setCreateDate={setCreateDate}
+        like={like}
+        setLike={setLike}
+        setDetails={setDetails}
+        currentIndex={currentIndex}
+        setCurrentIndex={setCurrentIndex}
+        modal={modal}
+        setModal={setModal}
+      />
 
       {/* 상세페이지 나타날 곳 */}
       {modal ? <Modal 
