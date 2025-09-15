@@ -51,15 +51,18 @@ function App() {
 
       <div className='list'>
         <div>
-          <h4>{title[0]}<span onClick={()=>{
-            const newLikes = [... like]
-            newLikes[0]++
-            setLike(newLikes)
-          }}>👍</span>{like[0]} 
+          <h4 onClick={()=>{
+            setModal(! modal)
+          }}>{title[0]}
+            <span onClick={()=>{
+              const newLikes = [... like]
+              newLikes[0]++
+              setLike(newLikes)
+              }}>👍
+            </span>{like[0]} 
           
-          {/* 변경단추 클릭하면 '남자코트추천 -> 여자코트추천 */}
-          <button onClick={changeTitle}>변경</button>
-
+            {/* 변경단추 클릭하면 '남자코트추천 -> 여자코트추천 */}
+            <button onClick={changeTitle}>변경</button>
           </h4>      
           <p>작성일 : {createDate[0]}</p>
         </div>
