@@ -19,6 +19,12 @@ function App() {
     '2025-7-1',
   ]);
 
+  const [details, setDetails] = useState([
+    '심플한 디자인의 코트로 가을에 잘 어울림',
+    '강남 우동의 찐 맛집! 먹어보진 않았음',
+    '자바 스터디는 말 만하고 못함',
+  ])
+
   // 좋아요 누름 숫자를 보관할 스테이트
   const [like, setLike] = useState([0,0,0]);
 
@@ -89,7 +95,13 @@ function App() {
       </div>
 
       {/* 상세페이지 나타날 곳 */}
-      {modal ? <Modal />: null }
+      {modal ? <Modal 
+          color="lightblue" 
+          title={title} 
+          currentIndex={currentIndex} 
+          createDate={createDate}
+          details={details}
+          />: null }
     </div>
   )
 }

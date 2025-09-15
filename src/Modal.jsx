@@ -1,10 +1,12 @@
 // 하나의 컴포넌트(조각)
-function Modal(){
+// Props Drilling
+function Modal({color, title, currentIndex, createDate, details}){
   return(
-    <div className='modal'>
-        <h4>제목</h4>
-        <p>날짜</p>
-        <p>상세내용</p>
+    <div className='modal'
+      style={{background: color}}>
+        <h4>{title[currentIndex]}</h4>
+        <p>{createDate[currentIndex]}</p>
+        <p>{details[currentIndex]}</p>
     </div>  
   )
 }
